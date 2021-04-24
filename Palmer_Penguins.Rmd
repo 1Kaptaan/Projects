@@ -1,0 +1,49 @@
+---
+title: "Palmer_Penguins"
+author: "Sukh Singh"
+date: "24/04/2021"
+output: html_document
+---
+
+## Setting up my environment
+Notes: Setting up my R environment by loading the 'tidyverse' and 'palmer 
+penguins' packages
+
+```{r Loading Packages}
+library(tidyverse)
+library(palmerpenguins) 
+library(ggplot2)
+```
+```{r Fipper vs body mass by species, warning=FALSE}
+ggplot(data=penguins) +
+  geom_point(mapping = aes(x=flipper_length_mm, y=body_mass_g, color=species)) +
+  labs(title="Palmer Penguins: Body Mass v/s Flipper Length",
+       subtitle="Sample of three species",
+       caption="Data collected by Dr. Kristen Gormen") +
+  annotate("text", x= 215, y= 3500, label= "Gentoo's are the largest")
+```
+
+The graph above has a Title, Subtitle, Caption and a Text annotation identifying 
+the largest species.
+```{r A curved reation between Flipper Length and Body Weight, warning=FALSE}
+ggplot(data=penguins) +
+  geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g), color = "blue") +
+  geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g), color = "red") +
+  labs(title = "Flipper Length v/s Body Mass - Curved Relation",
+       caption = "Data collected by Dr. Kristen Gormen")
+```
+
+## Using Facet
+The following graph shows the relation of flipper length and body mass 
+with regards to the sex of penguins.
+
+```{r A facet graph of Flipper Lenght v/s Body Mass w.r.t. sex, warning=FALSE}
+ggplot(data=penguins)+
+  geom_point(mapping = aes(x= flipper_length_mm, y= body_mass_g, color= species))+
+  facet_grid(sex~species)+
+  labs(title= "Flipper Length v/s Body Mass w.r.t Sex")
+
+```
+
+## Conclusion
+The analysis above clearly states that regardless of the sex, a penguin's flipper length increases as the body mass goes up. This means that penguins grow larger in all aspects.
